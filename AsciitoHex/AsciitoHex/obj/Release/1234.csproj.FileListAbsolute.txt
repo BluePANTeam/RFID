@@ -1,0 +1,5 @@
+C:\Users\BLUEII\AppData\Local\Temporary Projects\1234\bin\Release\1234.exe
+C:\Users\BLUEII\AppData\Local\Temporary Projects\1234\bin\Release\1234.pdb
+C:\Users\BLUEII\AppData\Local\Temporary Projects\1234\obj\Release\ResolveAssemblyReference.cache
+C:\Users\BLUEII\AppData\Local\Temporary Projects\1234\obj\Release\1234.exe
+C:\Users\BLUEII\AppData\Local\Temporary Projects\1234\obj\Release\1234.pdb

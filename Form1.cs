@@ -375,12 +375,11 @@ namespace WindowsFormsApplication1
 
             }
 
-            secnr = Convert.ToByte(12); //กำหนดsector
+            secnr = Convert.ToByte(10); //กำหนดsector
 
             IntPtr keyBuffer = Marshal.AllocHGlobal(256);
-            if (Check == 0)
-            {
-                byte[] bytesKey = ToDigitsBytes("FFFFFFFFFFFFF"); //กำหนด KEY
+          
+                byte[] bytesKey = ToDigitsBytes("FFFFFFFFFFFF"); //กำหนด KEY
 
                 for (int i = 0; i < bytesKey.Length; i++)
 
@@ -397,25 +396,8 @@ namespace WindowsFormsApplication1
                 // tb3.Text = "";
 
               //  IntPtr dataBuffer = Marshal.AllocHGlobal(256);
-            }
-            else
-            {
-                byte[] bytesKey = ToDigitsBytes("AAAAAAAAAAAA"); //กำหนด KEY
-
-                for (int i = 0; i < bytesKey.Length; i++)
-
-                    Marshal.WriteByte(keyBuffer, i * Marshal.SizeOf(typeof(Byte)), bytesKey[i]);
-
-                status = rf_M1_authentication2(icdev, mode, (byte)(secnr * 4), keyBuffer);
-
-                Marshal.FreeHGlobal(keyBuffer);
-
-                //TextBox Clear
-                // label4.Text = "0000000";
-                // tb1.Text = "";
-                // tb2.Text = "";
-                // tb3.Text = "";
-            }
+            
+           
                 IntPtr dataBuffer = Marshal.AllocHGlobal(256);
             
 
@@ -443,16 +425,47 @@ namespace WindowsFormsApplication1
                     return;
 
                 }
-               // rf_beep(0, 20);
                 byte[] bytesData = new byte[4];
+
+                for (j = 0; j < bytesData.Length; j++)
+                {
+
+                    bytesData[j] = Marshal.ReadByte(dataBuffer, j);
+                }
+
+
+                label4.Text = ToHexString(bytesData);
+                label5.Text = "ABCDEFG";
+
+            //5555555555
+                status = rf_M1_read(icdev, (byte)((secnr * 4) + 3), dataBuffer, ref cLen);
+
+                if (status != 0 || cLen != 16)
+                {
+
+                    label4.Text = "00000000";
+                    label5.Text = "xxxxxxxx";
+                    rf_light(0, 1);
+                    // rf_beep(0, 20);
+
+                    //.Text = "";
+
+                    Marshal.FreeHGlobal(dataBuffer);
+
+                    return;
+
+                }
+
+               // rf_beep(0, 20);
+                bytesData = new byte[16];
 
                 for (j = 0; j < bytesData.Length; j++){
 
                     bytesData[j] = Marshal.ReadByte(dataBuffer, j);}
 
             
-                    label4.Text = ToHexString(bytesData);
-                    label5.Text = "ABCDEFG";
+                    label6.Text = ToHexString(bytesData);
+                    //label5.Text = "ABCDEFG";
 
                 
 
@@ -468,7 +481,7 @@ namespace WindowsFormsApplication1
 
             short icdev = 0x0000;
             int status;
-            byte mode = 0x60;
+            byte mode = 0x61;
             byte secnr = 0x00;
             byte adr;
             int i;
@@ -481,7 +494,7 @@ namespace WindowsFormsApplication1
             }
 
        
-            secnr = Convert.ToByte(12);
+            secnr = Convert.ToByte(10);
             adr = (byte)(Convert.ToByte(1) + secnr * 4);
 
            // if (cbxSubmass2.SelectedIndex == 3)
@@ -523,9 +536,9 @@ namespace WindowsFormsApplication1
             //เปลี่ยนคีย์
 
             adr = (byte)(Convert.ToByte(3) + secnr * 4);
-            String strCompont = "AAAAAAAAAAAA";
-            strCompont += "FF078069";
-            strCompont += "FFFFFFFFFFFF";
+            String strCompont = "FFFFFFFFFFFF";
+            strCompont += "00FF0F69";
+            strCompont += "AAAAAAAAAAAA";
             bytesBlock = ToDigitsBytes(strCompont);
             for (i = 0; i < bytesBlock.Length; i++)
             {
@@ -534,56 +547,13 @@ namespace WindowsFormsApplication1
             status = rf_M1_write(icdev, adr, dataBuffer);
             Marshal.FreeHGlobal(dataBuffer);
 
-            if (status == 0) { Check = 1; }
-          
-
-            //เปลี่ยนคีย์
-         //   secnr = Convert.ToByte(12);
-          //  adr = (byte)(Convert.ToByte(3) + secnr * 4);
-
-            
-          /* bytesKey = ToDigitsBytes("FFFFFFFFFFFF");
-            for (i = 0; i < bytesKey.Length; i++)
-                Marshal.WriteByte(keyBuffer, i, bytesKey[i]);
-            status = rf_M1_authentication2(icdev, mode, (byte)(secnr * 4), keyBuffer);
-            Marshal.FreeHGlobal(keyBuffer);*/
-
-            /*    String strCompont = "AAAAAAAAAAAA";
-                strCompont += "FF0F0069";
-                strCompont += "FFFFFFFFFFFF";
-                bytesBlock = ToDigitsBytes(strCompont);*/
-
-              /*  for (i = 0; i < bytesBlock.Length; i++)
-                Marshal.WriteByte(dataBuffer, i, bytesBlock[i]);
-                status = rf_M1_write(icdev, adr, dataBuffer);
-                Marshal.FreeHGlobal(dataBuffer);*/
-
-
-           /* bytesBlock = ToDigitsBytes("AAAAAAAAAAAA");
-            dataBuffer = Marshal.AllocHGlobal(1024);
-
-            for (i = 0; i < bytesBlock.Length; i++)
-                Marshal.WriteByte(dataBuffer, i, bytesBlock[i]);
-            status = rf_M1_write(icdev, adr, dataBuffer);
-            Marshal.FreeHGlobal(dataBuffer);*/
-            /*  secnr = Convert.ToByte(13);
-              adr = (byte)(Convert.ToByte(3) + secnr * 4);
-            bytesBlock = ToDigitsBytes("AAAAAAAAAAAA");
-
-            IntPtr keyABuffer = Marshal.AllocHGlobal(1024);
-
-            for (i = 0; i < bytesBlock.Length; i++)
-                Marshal.WriteByte(keyABuffer, i, bytesBlock[i]);
-            status = rf_M1_write(icdev, adr, keyABuffer);
-            Marshal.FreeHGlobal(keyABuffer);*/
-
-
-            if (status != 0)
+    
+           /* if (status != 0)
             {
                 label5.Text = "การเขียนผิดพลาด";
-               // MessageBox.Show("rf_M1_write failed!!", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("rf_M1_write failed!111!", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
+            }*/
 
 
         }
@@ -621,12 +591,12 @@ namespace WindowsFormsApplication1
             IntPtr keyBuffer = Marshal.AllocHGlobal(1024);
             byte[] bytesBlock;
 
-            secnr = Convert.ToByte(12);
+            secnr = Convert.ToByte(10);
    
             adr = (byte)(Convert.ToByte(3) + secnr * 4);
             String strCompont = "FFFFFFFFFFFF";
-            strCompont += "FF078069";
-            strCompont += "FFFFFFFFFFFF";
+            strCompont += "FD2F00FF";
+            strCompont += "AAAAAAAAAAAA";
             bytesBlock = ToDigitsBytes(strCompont);
             for (i = 0; i < bytesBlock.Length; i++)
             {
