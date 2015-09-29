@@ -1,0 +1,16 @@
+C:\Users\anpan_\AppData\Local\Temporary Projects\barcode-rfid\bin\Release\barcode-rfid.exe
+C:\Users\anpan_\AppData\Local\Temporary Projects\barcode-rfid\bin\Release\barcode-rfid.pdb
+C:\Users\anpan_\AppData\Local\Temporary Projects\barcode-rfid\obj\Release\ResolveAssemblyReference.cache
+C:\Users\anpan_\AppData\Local\Temporary Projects\barcode-rfid\obj\Release\barcode_rfid.Form1.resources
+C:\Users\anpan_\AppData\Local\Temporary Projects\barcode-rfid\obj\Release\barcode_rfid.Properties.Resources.resources
+C:\Users\anpan_\AppData\Local\Temporary Projects\barcode-rfid\obj\Release\barcode-rfid.csproj.GenerateResource.Cache
+C:\Users\anpan_\AppData\Local\Temporary Projects\barcode-rfid\obj\Release\barcode-rfid.exe
+C:\Users\anpan_\AppData\Local\Temporary Projects\barcode-rfid\obj\Release\barcode-rfid.pdb
+C:\Users\anpan_\Documents\Visual Studio 2008\Projects\barcode-rfid\barcode-rfid\obj\Release\barcode-rfid.exe
+C:\Users\anpan_\Documents\Visual Studio 2008\Projects\barcode-rfid\barcode-rfid\obj\Release\barcode-rfid.pdb
+C:\Users\anpan_\Documents\Visual Studio 2008\Projects\barcode-rfid\barcode-rfid\bin\Release\barcode-rfid.exe
+C:\Users\anpan_\Documents\Visual Studio 2008\Projects\barcode-rfid\barcode-rfid\bin\Release\barcode-rfid.pdb
+C:\Users\anpan_\Documents\Visual Studio 2008\Projects\barcode-rfid\barcode-rfid\obj\Release\ResolveAssemblyReference.cache
+C:\Users\anpan_\Documents\Visual Studio 2008\Projects\barcode-rfid\barcode-rfid\obj\Release\barcode_rfid.Form1.resources
+C:\Users\anpan_\Documents\Visual Studio 2008\Projects\barcode-rfid\barcode-rfid\obj\Release\barcode_rfid.Properties.Resources.resources
+C:\Users\anpan_\Documents\Visual Studio 2008\Projects\barcode-rfid\barcode-rfid\obj\Release\barcode-rfid.csproj.GenerateResource.Cache
